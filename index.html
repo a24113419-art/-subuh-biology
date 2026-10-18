@@ -1,135 +1,436 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07150f">
 <title>سُبُح | منصة العلوم والأحياء</title>
+
 <style>
-:root{--bg:#07150f;--panel:#10271b;--line:#28513a;--green:#74e6b0;--text:#f2f7f3;--muted:#b6c9bc}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.9}
-header{background:#0d2419;padding:18px;position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line)}
-nav,.wrap{max-width:1100px;margin:auto}
-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-a{color:var(--green)}
-nav a{text-decoration:none;margin:4px}
-.wrap{padding:18px}
-.hero,.panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px}
-.hero h1{font-size:clamp(30px,6vw,48px);line-height:1.4}
-.hero span{color:var(--green)}
-h2{color:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-.card{margin:0;display:flex;flex-direction:column}
-.card p,.muted{color:var(--muted)}
-button,input,select{font:inherit;border-radius:10px;padding:10px;border:1px solid var(--line);margin:4px}
-button{background:#193b29;color:white;cursor:pointer}
-button.primary{background:var(--green);color:#07150f;font-weight:bold}
-input,select{background:#07150f;color:white;max-width:100%}
-label{display:block}
-.answer{display:block;width:100%;text-align:right;margin:8px 0}
-.correct{background:#145536!important;border-color:#74e6b0}
-.wrong{background:#6b2828!important}
-.tag{color:var(--green);font-size:.85rem}
-#lesson{display:none}
-#lesson.open{display:block}
-#lessonContent{white-space:normal}
-video{width:100%;max-height:480px;background:#000;border-radius:12px;margin-top:10px}
-.progress{height:8px;background:#203a2b;border-radius:9px;overflow:hidden}
-#progressFill{height:100%;width:0;background:var(--green)}
-footer{text-align:center;color:var(--muted);padding:25px}
+:root {
+  --bg:#07150f; --panel:#10271b; --line:#28513a;
+  --green:#74e6b0; --text:#f2f7f3; --muted:#b6c9bc;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:90px; }
+body {
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Tahoma,Arial,sans-serif; line-height:1.9;
+}
+header {
+  position:sticky; top:0; z-index:10;
+  background:#0d2419; border-bottom:1px solid var(--line); padding:12px;
+}
+nav,.wrap { max-width:1100px; margin:auto; }
+nav { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+nav a { color:var(--green); text-decoration:none; margin:5px; }
+.wrap { padding:18px; }
+.hero,.panel,.card {
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:18px; padding:20px; margin-bottom:18px;
+}
+.hero h1 { font-size:clamp(30px,6vw,48px); line-height:1.4; }
+h2 { color:var(--green); }
+.hero span,.tag { color:var(--green); }
+.muted { color:var(--muted); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+.card { margin:0; display:flex; flex-direction:column; }
+button,input,select {
+  font:inherit; border:1px solid var(--line); border-radius:10px;
+  padding:10px; margin:4px; max-width:100%;
+}
+button { background:#193b29; color:white; cursor:pointer; }
+button.primary { background:var(--green); color:#07150f; font-weight:bold; }
+button:disabled { opacity:.5; cursor:not-allowed; }
+input,select { background:#07150f; color:white; }
+.answer { display:block; width:100%; text-align:right; margin:8px 0; }
+.correct { background:#145536!important; border-color:var(--green); }
+.wrong { background:#6b2828!important; }
+.progress { height:9px; background:#203a2b; border-radius:9px; overflow:hidden; }
+#progressFill { height:100%; width:0; background:var(--green); transition:width .2s; }
+#lesson { display:none; }
+#lesson.open { display:block; }
+#lessonContent { white-space:normal; }
+video { width:100%; max-height:440px; background:#000; border-radius:12px; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+footer { text-align:center; color:var(--muted); padding:25px; }
+a { color:var(--green); }
+@media(max-width:600px) {
+  .two { grid-template-columns:1fr; }
+  .wrap { padding:12px; }
+}
 </style>
 </head>
+
 <body>
 <header>
-<nav>
-<strong>🧬 سُبُح</strong>
-<div>
-<a href="#courses">الدروس</a>
-<a href="#videos">الفيديوهات</a>
-<a href="#quiz">الاختبارات</a>
-<a href="#nsmo">نسمو</a>
-</div>
-</nav>
+  <nav>
+    <strong>🧬 سُبُح</strong>
+    <div>
+      <a href="#courses">الدروس</a>
+      <a href="#videos">الفيديوهات</a>
+      <a href="#quiz">الاختبارات</a>
+      <a href="#nsmo">نسمو</a>
+    </div>
+  </nav>
 </header>
 
 <main class="wrap">
+
 <section class="hero">
-<div class="tag">منصة التعلّم والعلوم</div>
-<h1>العلم يصير <span>أسهل.</span></h1>
-<p>تعلّم العلوم والأحياء من المرحلة الابتدائية حتى الثانوية، وراجع دروسك، وتدرّب على أسئلة التفكير العلمي وأولمبياد العلوم.</p>
-<a href="#courses">ابدأ التعلّم ↓</a>
+  <div class="tag">منصة التعلّم والعلوم</div>
+  <h1>العلم يصير <span>أسهل.</span></h1>
+  <p>تعلّم العلوم والأحياء، افتح الدروس، واختبر فهمك، وتدرّب على التفكير العلمي وأولمبياد العلوم.</p>
+  <a href="#courses">ابدأ التعلّم ↓</a>
 </section>
 
 <section class="panel">
-<h2>تقدّمك الدراسي</h2>
-<p>الدروس المكتملة: <strong id="doneCount">0</strong></p>
-<div class="progress"><div id="progressFill"></div></div>
-<p>إجابات صحيحة: <strong id="score">0</strong></p>
+  <h2>📈 تقدّمك الدراسي</h2>
+  <p>الدروس المكتملة: <strong id="doneCount">0</strong></p>
+  <div class="progress"><div id="progressFill"></div></div>
+  <p>الإجابات الصحيحة في الاختبارات: <strong id="score">0</strong></p>
+  <button id="resetProgress">إعادة ضبط التقدم</button>
 </section>
 
 <section id="courses">
-<h2>📚 مكتبة الدروس</h2>
-<p class="muted">محتوى تأسيسي للتعلّم والمراجعة، وليس بديلًا عن الكتاب المدرسي الرسمي.</p>
-<input id="search" placeholder="ابحث عن درس..." aria-label="البحث عن درس">
-<select id="grade" aria-label="اختر المرحلة">
-<option value="">جميع المراحل</option>
-<option>ابتدائي</option><option>متوسط</option>
-<option>أول ثانوي</option><option>ثاني ثانوي</option>
-<option>ثالث ثانوي</option><option>توسع وأولمبياد</option>
-</select>
-<div id="courseList" class="grid"></div>
+  <h2>📚 مكتبة الدروس</h2>
+  <p class="muted">محتوى تعليمي مساعد للمراجعة، وليس بديلًا عن الكتب الرسمية.</p>
+  <input id="search" placeholder="ابحث عن درس..." aria-label="البحث عن درس">
+  <select id="grade" aria-label="المرحلة الدراسية">
+    <option value="">جميع المراحل</option>
+    <option>ابتدائي</option>
+    <option>متوسط</option>
+    <option>أول ثانوي</option>
+    <option>ثاني ثانوي</option>
+    <option>ثالث ثانوي</option>
+    <option>توسع وأولمبياد</option>
+  </select>
+  <div id="courseList" class="grid"></div>
 </section>
 
 <section id="lesson" class="panel">
-<button onclick="closeLesson()">إغلاق ✕</button>
-<h2 id="lessonTitle"></h2>
-<div id="lessonContent"></div>
-<button class="primary" onclick="completeLesson()">علّمت الدرس كمكتمل ✓</button>
-<button onclick="startTopicQuiz()">اختبر فهمك</button>
+  <button id="closeLesson">إغلاق ✕</button>
+  <h2 id="lessonTitle"></h2>
+  <div id="lessonContent"></div>
+  <button class="primary" id="completeLesson">علّمت الدرس كمكتمل ✓</button>
+  <button id="lessonQuiz">اختبر فهمك</button>
 </section>
 
 <section id="videos">
-<h2>🎬 الفيديوهات الجاهزة</h2>
-<div class="panel">
-<p>اختر فيديو من ملفاتك أو اكتب مساره الصحيح. لا يتم إنشاء فيديو جديد هنا.</p>
-<select id="videoName">
-<option value="animal-kingdom.mp4">المملكة الحيوانية</option>
-<option value="cell.mp4">الخلية</option>
-<option value="plant.mp4">النباتات</option>
-<option value="ecosystem.mp4">النظام البيئي</option>
-<option value="genetics.mp4">الوراثة</option>
-</select>
-<input id="videoPath" value="videos/animal-kingdom.mp4" style="width:min(100%,400px)" aria-label="مسار الفيديو">
-<button class="primary" onclick="loadVideo()">تحميل الفيديو</button>
-<video id="player" controls playsinline>
-<source id="videoSource" src="videos/animal-kingdom.mp4" type="video/mp4">
-متصفحك لا يدعم الفيديو.
-</video>
-<p id="videoStatus" class="muted">تأكد من وجود ملف الفيديو في المسار المحدد.</p>
-</div>
+  <h2>🎬 مكتبة الفيديوهات</h2>
+  <div class="panel">
+    <p>اختر موضوعًا لتشغيل ملف الفيديو المرفوع في مجلد videos.</p>
+    <select id="videoName">
+      <option value="animal-kingdom.mp4">المملكة الحيوانية</option>
+      <option value="cell.mp4">الخلية</option>
+      <option value="plant.mp4">النباتات</option>
+      <option value="ecosystem.mp4">النظام البيئي</option>
+      <option value="genetics.mp4">الوراثة</option>
+    </select>
+    <button class="primary" id="loadVideo">تشغيل الفيديو</button>
+    <video id="player" controls playsinline preload="metadata">
+      <source id="videoSource" src="" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+    <p id="videoStatus" class="muted" aria-live="polite">
+      اختر فيديو. إذا لم يكن الملف مرفوعًا فستظهر رسالة توضح ذلك.
+    </p>
+    <p class="muted">مسار الملفات: videos/اسم-الفيديو.mp4</p>
+  </div>
 </section>
 
 <section id="quiz">
-<h2>🧠 بنك الأسئلة التفاعلي</h2>
-<div class="panel">
-<select id="quizTopic" aria-label="مجال الأسئلة">
-<option value="">كل المجالات</option>
-<option>أساسيات العلوم</option>
-<option>الخلية والوراثة</option>
-<option>التنوع الحيوي</option>
-<option>النباتات</option>
-<option>أجهزة الجسم</option>
-<option>البيئة</option>
-<option>التفكير العلمي</option>
-</select>
-<button class="primary" onclick="newQuiz()">ابدأ اختبارًا جديدًا</button>
-<p id="quizCount"></p>
-<h3 id="question"></h3>
-<div id="answers"></div>
-<p id="feedback" aria-live="polite"></p>
-<button id="next" onclick="nextQuestion()" disabled>السؤال التالي ←</button>
-</div>
+  <h2>🧠 بنك الأسئلة التفاعلي</h2>
+  <div class="panel">
+    <label for="quizTopic">مجال الأسئلة:</label>
+    <select id="quizTopic">
+      <option value="">كل المجالات</option>
+      <option>أساسيات العلوم</option>
+      <option>الخلية والوراثة</option>
+      <option>التنوع الحيوي</option>
+      <option>النباتات</option>
+      <option>أجهزة الجسم</option>
+      <option>البيئة</option>
+      <option>التفكير العلمي</option>
+    </select>
+    <button class="primary" id="startQuiz">ابدأ اختبارًا جديدًا</button>
+    <p id="quizCount"></p>
+    <h3 id="question">اختر المجال ثم ابدأ الاختبار.</h3>
+    <div id="answers"></div>
+    <p id="feedback" aria-live="polite"></p>
+    <button id="next" disabled>السؤال التالي ←</button>
+  </div>
 </section>
 
 <section id="nsmo">
-<h2>🔬
+  <h2>🔬 نسمو وأولمبياد العلوم</h2>
+  <div class="two">
+    <div class="panel">
+      <h3>المصادر الرسمية</h3>
+      <p>روابط للجهات التعليمية الرسمية. تحقق من شروط البرامج ومواعيدها من الجهة المنظمة.</p>
+      <ul>
+        <li><a href="https://www.mawhiba.org/" target="_blank" rel="noopener">مؤسسة موهبة</a></li>
+        <li><a href="https://www.moe.gov.sa/" target="_blank" rel="noopener">وزارة التعليم السعودية</a></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>التدريب والأسئلة</h3>
+      <p>أسئلة تدريبية من إعداد المنصة عن المتغيرات والتجارب وتحليل البيانات والاستدلال.</p>
+      <button class="primary" id="nsmoPractice">ابدأ تدريب التفكير العلمي</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>سُبُح — تعلّم • تدرّب • تقدّم</footer>
+
+<script>
+"use strict";
+
+const courses = [
+{
+ title:"الطريقة العلمية",
+ grade:"ابتدائي", topic:"أساسيات العلوم",
+ desc:"الملاحظة والسؤال والفرضية والتجربة.",
+ body:"يبدأ البحث العلمي بالملاحظة، ثم يطرح الباحث سؤالًا ويقترح فرضية قابلة للاختبار. بعد ذلك يصمم تجربة عادلة، ويقيس النتائج ويسجلها، ثم يقارن النتائج بالفرضية دون تحيز.",
+ def:"الفرضية تفسير مقترح يمكن اختباره بالأدلة."
+},
+{
+ title:"الخلية: وحدة بناء الحياة",
+ grade:"متوسط", topic:"الخلية والوراثة",
+ desc:"أجزاء الخلية ووظائفها.",
+ body:"الخلية أصغر وحدة بنائية ووظيفية في الكائن الحي. تحتوي الخلايا حقيقية النواة على نواة وغشاء وسيتوبلازم. وتحتوي الخلايا النباتية عادة على جدار خلوي وبلاستيدات خضراء وفجوة كبيرة.",
+ def:"الخلية وحدة البناء والوظيفة الأساسية للكائن الحي."
+},
+{
+ title:"المملكة الحيوانية والتصنيف",
+ grade:"متوسط", topic:"التنوع الحيوي",
+ desc:"الفقاريات واللافقاريات.",
+ body:"يصنف العلماء الحيوانات وفق صفات مشتركة. الفقاريات تمتلك عمودًا فقريًا، مثل الأسماك والطيور والثدييات. أما اللافقاريات فلا تمتلك عمودًا فقريًا، ومنها الحشرات والرخويات والديدان.",
+ def:"التصنيف تنظيم الكائنات في مجموعات وفق صفات مشتركة."
+},
+{
+ title:"النباتات والبناء الضوئي",
+ grade:"متوسط", topic:"النباتات",
+ desc:"كيف تصنع النباتات غذاءها؟",
+ body:"تستخدم النباتات الخضراء الطاقة الضوئية لتحويل الماء وثاني أكسيد الكربون إلى سكريات، وينطلق الأكسجين. تحدث معظم العملية في البلاستيدات الخضراء وتتأثر بالضوء والماء ودرجة الحرارة.",
+ def:"البناء الضوئي يحول الطاقة الضوئية إلى طاقة كيميائية مخزنة في الغذاء."
+},
+{
+ title:"أجهزة جسم الإنسان",
+ grade:"ثالث ثانوي", topic:"أجهزة الجسم",
+ desc:"تكامل أجهزة الجسم والاتزان الداخلي.",
+ body:"ينقل الجهاز الدوري الأكسجين والمواد الغذائية، ويبادل الجهاز التنفسي الغازات، ويهضم الجهاز الهضمي الطعام، ويطرح الجهاز الإخراجي الفضلات. تعمل الأجهزة معًا للمحافظة على ظروف داخلية مناسبة للخلايا.",
+ def:"الاتزان الداخلي تنظيم ظروف الجسم ضمن حدود مناسبة."
+},
+{
+ title:"الوراثة وDNA",
+ grade:"أول ثانوي", topic:"الخلية والوراثة",
+ desc:"الجينات والكروموسومات وانتقال الصفات.",
+ body:"يحمل DNA معلومات وراثية تستخدمها الخلايا في بناء البروتينات وتنظيم وظائفها. الجين جزء من DNA، وتوجد الجينات على الكروموسومات. تتأثر بعض الصفات بالوراثة والبيئة معًا.",
+ def:"الجين جزء من المادة الوراثية يحمل معلومات وظيفية."
+},
+{
+ title:"النظام البيئي والسلاسل الغذائية",
+ grade:"ابتدائي", topic:"البيئة",
+ desc:"انتقال الطاقة والعلاقات بين الكائنات.",
+ body:"يتكون النظام البيئي من كائنات حية وعوامل غير حية تتفاعل معًا. تنتج النباتات غذاءها، وتتغذى المستهلكات على كائنات أخرى، وتحلل المحللات البقايا وتعيد المواد إلى البيئة.",
+ def:"النظام البيئي كائنات حية وعوامل غير حية وتفاعلاتها."
+},
+{
+ title:"التنوع الحيوي والتكيف",
+ grade:"ثاني ثانوي", topic:"التنوع الحيوي",
+ desc:"التكيفات وحماية الأنواع.",
+ body:"يشمل التنوع الحيوي تنوع الجينات والأنواع والأنظمة البيئية. التكيف صفة موروثة قد تزيد فرص البقاء والتكاثر في بيئة معينة. فقد الموائل والتلوث والصيد الجائر قد يهدد الأنواع.",
+ def:"التكيف صفة موروثة تفيد الكائن في ظروف بيئية محددة."
+},
+{
+ title:"المتغيرات والتجربة العادلة",
+ grade:"توسع وأولمبياد", topic:"التفكير العلمي",
+ desc:"تصميم تجربة موثوقة.",
+ body:"المتغير المستقل هو ما يغيره الباحث، والتابع ما يقيسه، والعوامل الثابتة يحافظ عليها. تساعد المجموعة الضابطة والتكرارات والقياس الدقيق على تقييم أثر العامل.",
+ def:"التجربة العادلة تغير العامل المقصود وتثبت بقية الظروف قدر الإمكان."
+},
+{
+ title:"قراءة البيانات والاستدلال",
+ grade:"توسع وأولمبياد", topic:"التفكير العلمي",
+ desc:"استنتاجات تلتزم بالأدلة.",
+ body:"اقرأ عنوان الرسم ومحاوره ووحداته وحجم العينة. ابحث عن الأنماط، وميّز بين الارتباط والسببية. الاستنتاج القوي يذكر حدود البيانات ولا يتجاوز ما تدعمه.",
+ def:"الارتباط لا يثبت وحده أن أحد العاملين سبب الآخر."
+}
+];
+
+const questions = [
+{topic:"أساسيات العلوم",q:"أي جملة تمثل فرضية قابلة للاختبار؟",a:["النباتات جميلة","إذا زاد الضوء زاد النمو ضمن ظروف محددة","العلوم مهمة","كل النتائج متشابهة"],c:1,w:"الفرضية القابلة للاختبار تتوقع علاقة يمكن قياسها."},
+{topic:"أساسيات العلوم",q:"ما الأداة الأنسب لقياس الكتلة؟",a:["ميزان","ساعة","مسطرة فقط","عدسة مكبرة"],c:0,w:"يقيس الميزان الكتلة."},
+{topic:"أساسيات العلوم",q:"لماذا نكرر التجربة؟",a:["لتغيير النتيجة","للتحقق من ثبات النتائج","لإخفاء البيانات","لإلغاء القياس"],c:1,w:"التكرار يساعد على تقييم موثوقية النتائج."},
+{topic:"أساسيات العلوم",q:"أي مما يلي ملاحظة مباشرة؟",a:["درجة الحرارة 25 درجة على مقياس","النبات حزين","النتيجة ستنجح حتمًا","كل الكائنات متطابقة"],c:0,w:"الملاحظة تسجل ما شوهد أو قيس."},
+{topic:"الخلية والوراثة",q:"ما الوحدة الأساسية لبناء الكائن الحي؟",a:["العضو","الخلية","الجهاز","النظام البيئي"],c:1,w:"الخلية وحدة البناء والوظيفة الأساسية للحياة."},
+{topic:"الخلية والوراثة",q:"أين يوجد معظم DNA في الخلية حقيقية النواة؟",a:["النواة","الغشاء","الجدار","الفجوة فقط"],c:0,w:"توجد معظم المادة الوراثية في النواة."},
+{topic:"الخلية والوراثة",q:"ما وظيفة الغشاء الخلوي؟",a:["إنتاج الضوء","تنظيم مرور المواد","صنع التربة","حمل الهواء فقط"],c:1,w:"الغشاء ينظم تبادل المواد مع البيئة."},
+{topic:"الخلية والوراثة",q:"أين توجد البلاستيدات الخضراء غالبًا؟",a:["الخلايا النباتية","العظام","كل البكتيريا","خلايا الدم الحمراء الناضجة"],c:0,w:"توجد البلاستيدات في النباتات والطحالب."},
+{topic:"الخلية والوراثة",q:"الجين هو:",a:["عضو","جزء من DNA يحمل معلومات","غذاء","خلية كاملة"],c:1,w:"الجين منطقة من المادة الوراثية ذات وظيفة."},
+{topic:"التنوع الحيوي",q:"أي حيوان من الفقاريات؟",a:["الفراشة","دودة الأرض","السمكة","الأخطبوط"],c:2,w:"الأسماك تمتلك عمودًا فقريًا."},
+{topic:"التنوع الحيوي",q:"ما فائدة التصنيف العلمي؟",a:["منع المقارنة","تنظيم الكائنات وفق صفاتها","تغيير الصفات","إلغاء التنوع"],c:1,w:"يساعد التصنيف على التعرف على الكائنات ومقارنتها."},
+{topic:"التنوع الحيوي",q:"التكيف المفيد يكون عادة:",a:["موروثًا وملائمًا لظروف محددة","مفيدًا في كل البيئات","قرارًا واعيًا","صفة لا تنتقل أبدًا"],c:0,w:"تختلف فائدة التكيف باختلاف البيئة."},
+{topic:"النباتات",q:"ما الغاز الذي تمتصه النباتات في البناء الضوئي؟",a:["الأكسجين فقط","ثاني أكسيد الكربون","الهيليوم","النيتروجين فقط"],c:1,w:"يستخدم البناء الضوئي ثاني أكسيد الكربون والماء والطاقة الضوئية."},
+{topic:"النباتات",q:"أين تحدث معظم عملية البناء الضوئي؟",a:["البلاستيدات الخضراء","النواة فقط","الجدار الخلوي","الجذور فقط"],c:0,w:"تحتوي البلاستيدات على أصباغ تمتص الضوء."},
+{topic:"النباتات",q:"أي عامل يؤثر في البناء الضوئي؟",a:["شدة الضوء","اسم النبات المكتوب","شكل الملصق","لون الوعاء دائمًا"],c:0,w:"الضوء والماء وثاني أكسيد الكربون والحرارة عوامل مؤثرة."},
+{topic:"أجهزة الجسم",q:"ما وظيفة الجهاز التنفسي؟",a:["تبادل الغازات","تكوين العظام فقط","هضم الطعام بالكامل","إنتاج البول فقط"],c:0,w:"يتيح دخول الأكسجين وخروج ثاني أكسيد الكربون."},
+{topic:"أجهزة الجسم",q:"أي جهاز ينقل الأكسجين إلى أنحاء الجسم؟",a:["الدوري","الهيكلي وحده","الجلدي وحده","التناسلي فقط"],c:0,w:"ينقل الدم المواد عبر الجهاز الدوري."},
+{topic:"أجهزة الجسم",q:"الاتزان الداخلي يعني:",a:["تنظيم ظروف الجسم","توقف التفاعلات","عدم الحاجة للماء","تغير الحرارة بلا تنظيم"],c:0,w:"يحافظ الجسم على الظروف الداخلية ضمن نطاقات مناسبة."},
+{topic:"البيئة",q:"أي كائن يعد منتجًا في سلسلة غذائية؟",a:["نبات أخضر","أسد","صقر","فطر فقط"],c:0,w:"تنتج النباتات المادة العضوية باستخدام الضوء."},
+{topic:"البيئة",q:"ما دور المحللات؟",a:["تحليل البقايا وإعادة المواد","إيقاف دورة المواد","صنع الضوء","منع التحلل"],c:0,w:"تعيد المحللات العناصر إلى البيئة."},
+{topic:"البيئة",q:"أي إجراء يساعد على حماية التنوع الحيوي؟",a:["حماية الموائل","زيادة التلوث","الصيد الجائر","إزالة الغابات بلا تخطيط"],c:0,w:"حماية الموائل تقلل فقد الأنواع."},
+{topic:"التفكير العلمي",q:"في اختبار أثر السماد في النمو، ما المتغير المستقل؟",a:["كمية السماد التي يغيرها الباحث","طول النبات المقاس","اسم الباحث","لون الطاولة"],c:0,w:"المتغير المستقل هو العامل الذي يغيره الباحث."},
+{topic:"التفكير العلمي",q:"ما المتغير التابع في تجربة نمو النباتات؟",a:["مقدار النمو المقاس","نوع السماد الذي غُيّر","اسم الباحث","عنوان التجربة"],c:0,w:"المتغير التابع هو النتيجة التي تقاس."},
+{topic:"التفكير العلمي",q:"لماذا نثبت بقية الظروف عند اختبار نوع التربة؟",a:["لعزل أثر التربة قدر الإمكان","لضمان نتيجة مرغوبة","لمنع القياس","لجعل التجربة بلا هدف"],c:0,w:"تثبيت العوامل يقلل التفسيرات البديلة."},
+{topic:"التفكير العلمي",q:"وجد الباحث ارتباطًا بين عاملين. ما الاستنتاج الأدق؟",a:["أحدهما سبب الآخر حتمًا","الارتباط لا يثبت السببية وحده","لا توجد بيانات","الفرضية صحيحة للأبد"],c:1,w:"قد توجد عوامل أخرى تفسر العلاقة."},
+{topic:"التفكير العلمي",q:"ما فائدة المجموعة الضابطة؟",a:["توفير أساس للمقارنة","ضمان الفرضية","إلغاء القياسات","تغيير كل العوامل"],c:0,w:"تساعد في تقدير أثر المتغير المستقل."},
+{topic:"التفكير العلمي",q:"أي استنتاج علمي أفضل؟",a:["النتيجة تثبت كل شيء للأبد","ضمن ظروف التجربة ظهرت علاقة ونحتاج للتكرار","أنا متأكد لأني أريد","لا فرق في عينة واحدة يعني عدم وجود أثر"],c:1,w:"الاستنتاج الجيد يلتزم بحدود البيانات."}
+];
+
+const $ = id => document.getElementById(id);
+let completed = new Set();
+let score = 0, active = null, pool = [], index = 0, answered = false;
+
+try {
+  completed = new Set(JSON.parse(localStorage.getItem("subuh_done") || "[]"));
+  score = Number(localStorage.getItem("subuh_score") || 0);
+} catch(e) {}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[ch]);
+}
+
+function updateProgress() {
+  $("doneCount").textContent = completed.size;
+  $("progressFill").style.width = Math.min(100, completed.size / courses.length * 100) + "%";
+  $("score").textContent = score;
+}
+
+function renderCourses() {
+  const term = $("search").value.trim().toLowerCase();
+  const grade = $("grade").value;
+  const list = courses.filter(c =>
+    (!grade || c.grade === grade) &&
+    [c.title,c.desc,c.topic,c.grade].join(" ").toLowerCase().includes(term)
+  );
+
+  $("courseList").innerHTML = list.map(c => {
+    const i = courses.indexOf(c);
+    return `<article class="card">
+      <span class="tag">${escapeHTML(c.grade)} · ${escapeHTML(c.topic)}</span>
+      <h3>${escapeHTML(c.title)}</h3>
+      <p>${escapeHTML(c.desc)}</p>
+      <div>
+        <button class="primary" data-open="${i}">افتح الدرس</button>
+        <button data-mark="${i}">${completed.has(c.title) ? "✓ مكتمل" : "علّمت الدرس"}</button>
+      </div>
+    </article>`;
+  }).join("");
+
+  document.querySelectorAll("[data-open]").forEach(b =>
+    b.addEventListener("click", () => openLesson(courses[Number(b.dataset.open)]))
+  );
+  document.querySelectorAll("[data-mark]").forEach(b =>
+    b.addEventListener("click", () => toggleDone(courses[Number(b.dataset.mark)].title))
+  );
+  updateProgress();
+}
+
+function toggleDone(title) {
+  if (completed.has(title)) completed.delete(title);
+  else completed.add(title);
+  try { localStorage.setItem("subuh_done", JSON.stringify([...completed])); } catch(e) {}
+  renderCourses();
+  if (active) {
+    $("completeLesson").textContent = completed.has(active.title)
+      ? "✓ مكتمل — اضغط لإلغاء الإكمال"
+      : "علّمت الدرس كمكتمل ✓";
+  }
+}
+
+function openLesson(course) {
+  active = course;
+  $("lessonTitle").textContent = course.title;
+  $("lessonContent").innerHTML = `
+    <p>${escapeHTML(course.desc)}</p>
+    <h3>شرح الدرس</h3>
+    <p>${escapeHTML(course.body)}</p>
+    <p><strong>تذكّر:</strong> ${escapeHTML(course.def)}</p>
+    <p>حاول تلخيص الفكرة بكلماتك قبل بدء الاختبار.</p>`;
+  $("completeLesson").textContent = completed.has(course.title)
+    ? "✓ مكتمل — اضغط لإلغاء الإكمال"
+    : "علّمت الدرس كمكتمل ✓";
+  $("lesson").classList.add("open");
+  $("lesson").scrollIntoView({behavior:"smooth"});
+}
+
+function buildQuiz(topic, resetScore) {
+  pool = questions.filter(q => !topic || q.topic === topic);
+  if (!pool.length) pool = questions.slice();
+  pool = pool.slice().sort(() => Math.random() - 0.5);
+  index = 0;
+  answered = false;
+  if (resetScore) score = 0;
+  try { localStorage.setItem("subuh_score", String(score)); } catch(e) {}
+  updateProgress();
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if (index >= pool.length) {
+    $("question").textContent = "أحسنت! أكملت الاختبار.";
+    $("answers").innerHTML = "";
+    $("quizCount").textContent = "عدد الأسئلة: " + pool.length;
+    $("feedback").textContent = "إجاباتك الصحيحة في هذه الجولة: " + score;
+    $("next").disabled = true;
+    return;
+  }
+
+  answered = false;
+  const q = pool[index];
+  $("quizCount").textContent = `السؤال ${index+1} من ${pool.length} · ${q.topic}`;
+  $("question").textContent = q.q;
+  $("feedback").textContent = "";
+  $("next").disabled = true;
+
+  $("answers").innerHTML = q.a.map((answer,i) =>
+    `<button class="answer" data-answer="${i}">${["أ","ب","ج","د"][i]}. ${escapeHTML(answer)}</button>`
+  ).join("");
+
+  document.querySelectorAll("[data-answer]").forEach(b =>
+    b.addEventListener("click", () => chooseAnswer(Number(b.dataset.answer)))
+  );
+}
+
+function chooseAnswer(choice) {
+  if (answered) return;
+  answered = true;
+  const q = pool[index];
+  const buttons = [...document.querySelectorAll("[data-answer]")];
+  buttons.forEach(b => b.disabled = true);
+  buttons[q.c].classList.add("correct");
+
+  if (choice === q.c) {
+    score++;
+    $("feedback").textContent = "إجابة صحيحة! " + q.w;
+  } else {
+    buttons[choice].classList.add("wrong");
+    $("feedback").textContent = "الإجابة غير صحيحة. " + q.w;
+  }
+
+  try { localStorage.setItem("subuh_score", String(score)); } catch(e) {}
+  updateProgress();
+  $("next").disabled = false;
+}
+
+$("search").addEventListener("input", renderCourses);
+$("grade").addEventListener("change", renderCourses);
+$("closeLesson").addEventListener("click", () => $("lesson").classList.remove("open"));
+$("completeLesson").addE
